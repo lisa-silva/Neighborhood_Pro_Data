@@ -55,3 +55,9 @@ if search_query:
 st.divider()
 st.subheader("Available Local Pros")
 st.dataframe(existing_data, use_container_width=True)
+if st.checkbox("Show Neighborhood Trends"):
+    st.write("### Data Scientist Insights")
+    # This shows which specialties are most common in the neighborhood
+    chart_data = existing_data['Specialty'].value_counts()
+    st.bar_chart(chart_data)
+    st.caption("This data helps the neighborhood know which services we are missing!")
