@@ -1,0 +1,40 @@
+import streamlit as st
+import pandas as pd
+
+# 1. Setup the Page
+st.set_page_config(page_title="Neighborhood Pro-Registry", layout="centered")
+
+st.title("🏡 Neighborhood Pro-Registry")
+st.markdown("### Join the local 'HomeBrain' network!")
+
+# 2. The Business Card Form
+with st.form("pro_card_form"):
+    st.subheader("Create Your Virtual Business Card")
+    
+    biz_name = st.text_input("Business Name")
+    specialty = st.selectbox("Specialty", ["Plumbing", "Electrical", "Landscaping", "Civil Engineering", "House Cleaning"])
+    phone = st.text_input("Phone Number")
+    bio = st.text_area("What do you want neighbors to know? (e.g., '24/7 Emergency help')")
+    
+    submit = st.form_submit_button("Publish My Card")
+
+# 3. What happens when they click the button
+if submit:
+    if biz_name and phone:
+        # For now, we show a preview of the card
+        st.success(f"🎉 Success! {biz_name} is now live.")
+        
+        # This is what the neighbor sees
+        st.markdown("---")
+        st.subheader("Preview of your Virtual Card:")
+        st.info(f"**{biz_name}** | {specialty}\n\n📞 {phone}\n\n{bio}")
+    else:
+        st.error("Please fill out the Name and Phone Number!")
+
+# 4. The "Search" Feature for Neighbors
+st.markdown("---")
+st.subheader("🔍 Find a Local Pro")
+search = st.text_input("What do you need help with? (e.g. 'broken pipe')")
+if search:
+    st.write(f"Searching for '{search}' using AI...")
+    # This is where we will plug in your Gemini code later!
